@@ -9,7 +9,7 @@ const char* mqtt_server = "192.168.1.2";// Your PC IP address
 WiFiClient espClient;
 PubSubClient client(espClient);
 
-const int BLUE_LED = 2;
+const int YELLOW_LED = 12;
 
 const int BLUE_RELAY = 5;
 const int RED_RELAY = 4;
@@ -39,8 +39,8 @@ static void turnOffAllRelays(void)
 }
 
 void setup() {
-  pinMode(BLUE_LED, OUTPUT);     // Initialize the BUILTIN_LED pin as an output
-  digitalWrite(BLUE_LED, HIGH);
+  pinMode(YELLOW_LED, OUTPUT);     // Initialize the BUILTIN_LED pin as an output
+  digitalWrite(YELLOW_LED, HIGH);
   initRelays();
   turnOffAllRelays();
   
@@ -133,7 +133,7 @@ void reconnect() {
       client.subscribe(greenRelayTopic);
       client.subscribe(lampRelayTopic);
       client.subscribe(allRelayTopic);
-      digitalWrite(BLUE_LED, LOW);
+      digitalWrite(YELLOW_LED, LOW);
     } else {
       Serial.print("failed, rc=");
       Serial.print(client.state());
